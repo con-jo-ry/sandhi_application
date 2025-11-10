@@ -1,0 +1,385 @@
+[a|ā],a,ā
+[a|ā],ā,ā
+[a|ā],i,e
+[a|ā],ī,e
+[a|ā],u,o
+[a|ā],ū,o
+[a|ā],ṛ,ar
+[a|ā],ṝ,ar
+[a|ā],e,ai
+[a|ā],ai,ai
+[a|ā],o,au
+[a|ā],au,au
+[i|ī],a,y a
+[i|ī],ā,y ā
+[i|ī],i,ī
+[i|ī],ī,ī
+[i|ī],u,y u
+[i|ī],ū,y ū
+[i|ī],ṛ,y ṛ
+[i|ī],ṝ,y ṝ
+[i|ī],e,y e
+[i|ī],ai,y ai
+[i|ī],o,y o
+[i|ī],au,y au
+[u|ū],a,v a
+[u|ū],ā,v ā
+[u|ū],i,v i
+[u|ū],ī,v ī
+[u|ū],u,ū
+[u|ū],ū,ū
+[u|ū],ṛ,v ṛ
+[u|ū],ṝ,v ṝ
+[u|ū],e,v e
+[u|ū],ai,v ai
+[u|ū],o,v o
+[u|ū],au,v au
+[ṛ|ṝ],a,r a
+[ṛ|ṝ],ā,r ā
+[ṛ|ṝ],i,r i
+[ṛ|ṝ],ī,r ī
+[ṛ|ṝ],u,r u
+[ṛ|ṝ],ū,r ū
+[ṛ|ṝ],ṛ,ṝ
+[ṛ|ṝ],ṝ,ṝ
+[ṛ|ṝ],e,r e
+[ṛ|ṝ],ai,r ai
+[ṛ|ṝ],o,r o
+[ṛ|ṝ],au,r au
+e,a,e '
+e,ā,a ā
+e,i,a i
+e,ī,a ī
+e,u,a u
+e,ū,a ū
+e,ṛ,a ṛ
+e,ṝ,a ṝ
+e,e,a e
+e,ai,a ai
+e,o,a o
+e,au,a au
+ai,a,ā a
+ai,ā,ā ā
+ai,i,ā i
+ai,ī,ā ī
+ai,u,ā u
+ai,ū,ā ū
+ai,ṛ,ā ṛ
+ai,ṝ,ā ṝ
+ai,e,ā e
+ai,ai,ā ai
+ai,o,ā o
+ai,au,ā au
+au,a,āv a
+au,ā,āv ā
+au,i,āv i
+au,ī,āv ī
+au,u,āv u
+au,ū,āv ū
+au,ṛ,āv ṛ
+au,ṝ,āv ṝ
+au,e,āv e
+au,ai,āv ai
+au,o,āv o
+au,au,āv au
+k,[k|kh|p|ph|ṣ|s],k [k|kh|p|ph|ṣ|s]
+k,ś,k ś
+k,[c|ch],k [c|ch]
+k,[ṭ|ṭh],k [ṭ|ṭh]
+k,[t|th],k [t|th]
+k,r,g r
+k,[g|gh|d|dh|b|bh|y|v],g [g|gh|d|dh|b|bh|y|v]
+k,[j|jh],g [j|jh]
+k,[ḍ|ḍh],g [ḍ|ḍh]
+k,l,g l
+k,h,g gh
+k,[n|m],ṅ [n|m]
+k,a,g a
+k,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],g [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+k,[END],k
+ṭ,[k|kh|p|ph|ṣ|s],ṭ [k|kh|p|ph|ṣ|s]
+ṭ,ś,ṭ ś
+ṭ,[c|ch],ṭ [c|ch]
+ṭ,[ṭ|ṭh],ṭ [ṭ|ṭh]
+ṭ,[t|th],ṭ [t|th]
+ṭ,r,ḍ r
+ṭ,[g|gh|d|dh|b|bh|y|v],ḍ [g|gh|d|dh|b|bh|y|v]
+ṭ,[j|jh],ḍ [j|jh]
+ṭ,[ḍ|ḍh],ḍ [ḍ|ḍh]
+ṭ,l,ḍ l
+ṭ,h,ḍ ḍh
+ṭ,[n|m],ṇ [n|m]
+ṭ,a,ḍ a
+ṭ,[a|ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],ḍ [a|ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+ṭ,[END],ṭ
+t,[k|kh|p|ph|ṣ|s],t [k|kh|p|ph|ṣ|s]
+t,ś,c ch
+t,[c|ch],c [c|ch]
+t,[ṭ|ṭh],ṭ [ṭ|ṭh]
+t,[t|th],t [t|th]
+t,r,d r
+t,[g|gh|d|dh|b|bh|y|v],d [g|gh|d|dh|b|bh|y|v]
+t,[j|jh],j [j|jh]
+t,[ḍ|ḍh],ḍ [ḍ|ḍh]
+t,l,l l
+t,h,d dh
+t,[n|m],n [n|m]
+t,a,d a
+t,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],d [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+t,[END],t
+p,[k|kh|p|ph|ṣ|s],p [k|kh|p|ph|ṣ|s]
+p,ś,p ś
+p,[c|ch],p [c|ch]
+p,[ṭ|ṭh],p [ṭ|ṭh]
+p,[t|th],p [t|th]
+p,r,b r
+p,[g|gh|d|dh|b|bh|y|v],b [g|gh|d|dh|b|bh|y|v]
+p,[j|jh],b [j|jh]
+p,[ḍ|ḍh],b [ḍ|ḍh]
+p,l,b l
+p,h,b bh
+p,[n|m],m [n|m]
+p,a,b a
+p,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],b [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+p,[END],p
+[a|i|u|ṛ|ḷ]ṅ,[k|kh|p|ph|ṣ|s],ṅ [k|kh|p|ph|ṣ|s]
+[a|i|u|ṛ|ḷ]ṅ,ś,ṅ ś
+[a|i|u|ṛ|ḷ]ṅ,[c|ch],ṅ [c|ch]
+[a|i|u|ṛ|ḷ]ṅ,[ṭ|ṭh],ṅ [ṭ|ṭh]
+[a|i|u|ṛ|ḷ]ṅ,[t|th],ṅ [t|th]
+[a|i|u|ṛ|ḷ]ṅ,r,ṅ r
+[a|i|u|ṛ|ḷ]ṅ,[g|gh|d|dh|b|bh|y|v],ṅ [g|gh|d|dh|b|bh|y|v]
+[a|i|u|ṛ|ḷ]ṅ,[j|jh],ṅ [j|jh]
+[a|i|u|ṛ|ḷ]ṅ,[ḍ|ḍh],ṅ [ḍ|ḍh]
+[a|i|u|ṛ|ḷ]ṅ,l,ṅ l
+[a|i|u|ṛ|ḷ]ṅ,h,ṅ h
+[a|i|u|ṛ|ḷ]ṅ,[n|m],ṅ [n|m]
+[a|i|u|ṛ|ḷ]ṅ,a,[a|i|u|ṛ|ḷ]ṅṅ a
+[a|i|u|ṛ|ḷ]ṅ,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],[a|i|u|ṛ|ḷ]ṅṅ [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+[a|i|u|ṛ|ḷ]ṅ,[END],[a|i|u|ṛ|ḷ]ṅ
+[ā|ī|ū|o|e|ai|au]ṅ,[k|kh|p|ph|ṣ|s],ṅ [k|kh|p|ph|ṣ|s]
+[ā|ī|ū|o|e|ai|au]ṅ,ś,ṅ ś
+[ā|ī|ū|o|e|ai|au]ṅ,[c|ch],ṅ [c|ch]
+[ā|ī|ū|o|e|ai|au]ṅ,[ṭ|ṭh],ṅ [ṭ|ṭh]
+[ā|ī|ū|o|e|ai|au]ṅ,[t|th],ṅ [t|th]
+[ā|ī|ū|o|e|ai|au]ṅ,r,ṅ r
+[ā|ī|ū|o|e|ai|au]ṅ,[g|gh|d|dh|b|bh|y|v],ṅ [g|gh|d|dh|b|bh|y|v]
+[ā|ī|ū|o|e|ai|au]ṅ,[j|jh],ṅ [j|jh]
+[ā|ī|ū|o|e|ai|au]ṅ,[ḍ|ḍh],ṅ [ḍ|ḍh]
+[ā|ī|ū|o|e|ai|au]ṅ,l,ṅ l
+[ā|ī|ū|o|e|ai|au]ṅ,h,ṅ h
+[ā|ī|ū|o|e|ai|au]ṅ,[n|m],ṅ [n|m]
+[ā|ī|ū|o|e|ai|au]ṅ,a,[a|i|u]ṅ a
+[ā|ī|ū|o|e|ai|au]ṅ,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],[ā|ī|ū|o|e|ai|au]ṅ [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+[ā|ī|ū|o|e|ai|au]ṅ,[END],[ā|ī|ū|o|e|ai|au]ṅ
+m,[k|kh|p|ph|ṣ|s],ṃ [k|kh|p|ph|ṣ|s]
+m,ś,ṃ ś
+m,[c|ch],ṃ [c|ch]
+m,[ṭ|ṭh],ṃ [ṭ|ṭh]
+m,[t|th],ṃ [t|th]
+m,r,ṃ r
+m,[g|gh|d|dh|b|bh|y|v],ṃ [g|gh|d|dh|b|bh|y|v]
+m,[j|jh],ṃ [j|jh]
+m,[ḍ|ḍh],ṃ [ḍ|ḍh]
+m,l,ṃ l
+m,h,ṃ h
+m,[n|m],ṃ [n|m]
+m,a,m a
+m,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],m [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+m,[END],m
+[a|i|u|ṛ|ḷ]n,[k|kh|p|ph|ṣ|s],n [k|kh|p|ph|ṣ|s]
+[a|i|u|ṛ|ḷ]n,ś,ñ ch
+[a|i|u|ṛ|ḷ]n,[c|ch],ṃś [c|ch]
+[a|i|u|ṛ|ḷ]n,[ṭ|ṭh],ṃś [ṭ|ṭh]
+[a|i|u|ṛ|ḷ]n,[t|th],ṃś [t|th]
+[a|i|u|ṛ|ḷ]n,r,n r
+[a|i|u|ṛ|ḷ]n,[g|gh|d|dh|b|bh|y|v],n [g|gh|d|dh|b|bh|y|v]
+[a|i|u|ṛ|ḷ]n,[j|jh],ñ [j|jh]
+[a|i|u|ṛ|ḷ]n,[ḍ|ḍh],ṇ [ḍ|ḍh]
+[a|i|u|ṛ|ḷ]n,l,ṃ l
+[a|i|u|ṛ|ḷ]n,h,n h
+[a|i|u|ṛ|ḷ]n,[n|m],n [n|m]
+[a|i|u|ṛ|ḷ]n,a,nn a
+[a|i|u|ṛ|ḷ]n,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],[a|i|u|ṛ|ḷ]nn [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+[a|i|u|ṛ|ḷ]n,[END],[a|i|u|ṛ|ḷ]n
+[ā|ī|ū|o|e|ai|au]n,[k|kh|p|ph|ṣ|s],n [k|kh|p|ph|ṣ|s]
+[ā|ī|ū|o|e|ai|au]n,ś,ñ ch
+[ā|ī|ū|o|e|ai|au]n,[c|ch],ṃś [c|ch]
+[ā|ī|ū|o|e|ai|au]n,[ṭ|ṭh],ṃś [ṭ|ṭh]
+[ā|ī|ū|o|e|ai|au]n,[t|th],ṃś [t|th]
+[ā|ī|ū|o|e|ai|au]n,r,n r
+[ā|ī|ū|o|e|ai|au]n,[g|gh|d|dh|b|bh|y|v],n [g|gh|d|dh|b|bh|y|v]
+[ā|ī|ū|o|e|ai|au]n,[j|jh],ñ [j|jh]
+[ā|ī|ū|o|e|ai|au]n,[ḍ|ḍh],ṇ [ḍ|ḍh]
+[ā|ī|ū|o|e|ai|au]n,l,ṃ l
+[ā|ī|ū|o|e|ai|au]n,h,n h
+[ā|ī|ū|o|e|ai|au]n,[n|m],n [n|m]
+[ā|ī|ū|o|e|ai|au]n,a,n a
+[ā|ī|ū|o|e|ai|au]n,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],[ā|ī|ū|o|e|ai|au]n [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+[ā|ī|ū|o|e|ai|au]n,[END],[ā|ī|ū|o|e|ai|au]n
+as,[k|kh|p|ph|ṣ|s],aḥ [k|kh|p|ph|ṣ|s]
+as,ś,aḥ ś
+as,[c|ch],aś [c|ch]
+as,[ṭ|ṭh],aṣ [ṭ|ṭh]
+as,[t|th],as [t|th]
+as,r,o r
+as,[g|gh|d|dh|b|bh|y|v],o [g|gh|d|dh|b|bh|y|v]
+as,[j|jh],o [j|jh]
+as,[ḍ|ḍh],o [ḍ|ḍh]
+as,l,o l
+as,h,o h
+as,[n|m],o [n|m]
+as,a,o '
+as,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],a [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+as,[END],aḥ
+ās,[k|kh|p|ph|ṣ|s],āḥ [k|kh|p|ph|ṣ|s]
+ās,ś,āḥ ś
+ās,[c|ch],āś [c|ch]
+ās,[ṭ|ṭh],āṣ [ṭ|ṭh]
+ās,[t|th],ās [t|th]
+ās,r,ā r
+ās,[g|gh|d|dh|b|bh|y|v],ā [g|gh|d|dh|b|bh|y|v]
+ās,[j|jh],ā [j|jh]
+ās,[ḍ|ḍh],ā [ḍ|ḍh]
+ās,l,ā l
+ās,h,ā h
+ās,[n|m],ā [n|m]
+ās,a,ā a
+ās,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],ā [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+ās,[END],āḥ
+is,[k|kh|p|ph|ṣ|s],iḥ [k|kh|p|ph|ṣ|s]
+is,ś,iḥ ś
+is,[c|ch],iś [c|ch]
+is,[ṭ|ṭh],iṣ [ṭ|ṭh]
+is,[t|th],is [t|th]
+is,r,ī r
+is,[g|gh|d|dh|b|bh|y|v],ir [g|gh|d|dh|b|bh|y|v]
+is,[j|jh],ir [j|jh]
+is,[ḍ|ḍh],ir [ḍ|ḍh]
+is,l,ir l
+is,h,ir h
+is,[n|m],ir [n|m]
+is,a,ir a
+is,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],ir [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+is,[END],iḥ
+us,[k|kh|p|ph|ṣ|s],uḥ [k|kh|p|ph|ṣ|s]
+us,ś,uḥ ś
+us,[c|ch],uś [c|ch]
+us,[ṭ|ṭh],uṣ [ṭ|ṭh]
+us,[t|th],us [t|th]
+us,r,ū r
+us,[g|gh|d|dh|b|bh|y|v],ur [g|gh|d|dh|b|bh|y|v]
+us,[j|jh],ur [j|jh]
+us,[ḍ|ḍh],ur [ḍ|ḍh]
+us,l,ur l
+us,h,ur h
+us,[n|m],ur [n|m]
+us,a,ur a
+us,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],ur [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+us,[END],uḥ
+[ī|ū|e|ai|o|au]s,[k|kh|p|ph|ṣ|s],[ī|ū|e|ai|o|au]ḥ [k|kh|p|ph|ṣ|s]
+[ī|ū|e|ai|o|au]s,ś,[ī|ū|e|ai|o|au]ḥ ś
+[ī|ū|e|ai|o|au]s,[c|ch],[ī|ū|e|ai|o|au]ś [c|ch]
+[ī|ū|e|ai|o|au]s,[ṭ|ṭh],[ī|ū|e|ai|o|au]ṣ [ṭ|ṭh]
+[ī|ū|e|ai|o|au]s,[t|th],[ī|ū|e|ai|o|au]s [t|th]
+[ī|ū|e|ai|o|au]s,r,[ī|ū|e|ai|o|au] r
+[ī|ū|e|ai|o|au]s,[g|gh|d|dh|b|bh|y|v],[ī|ū|e|ai|o|au]r [g|gh|d|dh|b|bh|y|v]
+[ī|ū|e|ai|o|au]s,[j|jh],[ī|ū|e|ai|o|au]r [j|jh]
+[ī|ū|e|ai|o|au]s,[ḍ|ḍh],[ī|ū|e|ai|o|au]r [ḍ|ḍh]
+[ī|ū|e|ai|o|au]s,l,[ī|ū|e|ai|o|au]r l
+[ī|ū|e|ai|o|au]s,h,[ī|ū|e|ai|o|au]r h
+[ī|ū|e|ai|o|au]s,[n|m],[ī|ū|e|ai|o|au]r [n|m]
+[ī|ū|e|ai|o|au]s,a,[ī|ū|e|ai|o|au]r a
+[ī|ū|e|ai|o|au]s,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],[ī|ū|e|ai|o|au]r [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+[ī|ū|e|ai|o|au]s,[END],[ī|ū|e|ai|o|au]ḥ
+# Exceptions
+sas,[k|kh|p|ph|ṣ|s],saḥ [k|kh|p|ph|ṣ|s]
+sas,ś,saḥ ś
+sas,[c|ch],sa [c|ch]
+sas,[ṭ|ṭh],sa [ṭ|ṭh]
+sas,[t|th],sa [t|th]
+sas,r,sa r
+sas,[g|gh|d|dh|b|bh|y|v],sa [g|gh|d|dh|b|bh|y|v]
+sas,[j|jh],sa [j|jh]
+sas,[ḍ|ḍh],sa [ḍ|ḍh]
+sas,l,sa l
+sas,h,sa h
+sas,[n|m],sa [n|m]
+sas,a,so '
+sas,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],sa [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+sas,[END],saḥ
+eṣas,[k|kh|p|ph|ṣ|s],eṣaḥ [k|kh|p|ph|ṣ|s]
+eṣas,ś,eṣaḥ ś
+eṣas,[c|ch],eṣa [c|ch]
+eṣas,[ṭ|ṭh],eṣa [ṭ|ṭh]
+eṣas,[t|th],eṣa [t|th]
+eṣas,r,eṣa r
+eṣas,[g|gh|d|dh|b|bh|y|v],eṣa [g|gh|d|dh|b|bh|y|v]
+eṣas,[j|jh],eṣa [j|jh]
+eṣas,[ḍ|ḍh],eṣa [ḍ|ḍh]
+eṣas,l,eṣa l
+eṣas,h,eṣa h
+eṣas,[n|m],eṣa [n|m]
+eṣas,a,eṣo '
+eṣas,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],eṣa [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+eṣas,[END],eṣaḥ
+punas,[k|kh|p|ph|ṣ|s],punaḥ [k|kh|p|ph|ṣ|s]
+punas,ś,punaḥ ś
+punas,[c|ch],punaś [c|ch]
+punas,[ṭ|ṭh],punaṣ [ṭ|ṭh]
+punas,[t|th],punas [t|th]
+punas,r,punar r
+punas,[g|gh|d|dh|b|bh|y|v],punar [g|gh|d|dh|b|bh|y|v]
+punas,[j|jh],punar [j|jh]
+punas,[ḍ|ḍh],punar [ḍ|ḍh]
+punas,l,punar l
+punas,h,punar h
+punas,[n|m],punar [n|m]
+punas,a,punar a
+punas,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],punar [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+punas,[END],punaḥ
+punar,[k|kh|p|ph|ṣ|s],punaḥ [k|kh|p|ph|ṣ|s]
+punar,ś,punaḥ ś
+punar,[c|ch],punaś [c|ch]
+punar,[ṭ|ṭh],punaṣ [ṭ|ṭh]
+punar,[t|th],punas [t|th]
+punar,r,punar r
+punar,[g|gh|d|dh|b|bh|y|v],punar [g|gh|d|dh|b|bh|y|v]
+punar,[j|jh],punar [j|jh]
+punar,[ḍ|ḍh],punar [ḍ|ḍh]
+punar,l,punar l
+punar,h,punar h
+punar,[n|m],punar [n|m]
+punar,a,punar a
+punar,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],punar [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+punar,[END],punaḥ
+prātas,[k|kh|p|ph|ṣ|s],prātaḥ [k|kh|p|ph|ṣ|s]
+prātas,ś,prātaḥ ś
+prātas,[c|ch],prātaś [c|ch]
+prātas,[ṭ|ṭh],prātaṣ [ṭ|ṭh]
+prātas,[t|th],prātas [t|th]
+prātas,r,prāta r
+prātas,[g|gh|d|dh|b|bh|y|v],prātar [g|gh|d|dh|b|bh|y|v]
+prātas,[j|jh],prātar [j|jh]
+prātas,[ḍ|ḍh],prātar [ḍ|ḍh]
+prātas,l,prātar l
+prātas,h,prātar h
+prātas,[n|m],prātar [n|m]
+prātas,a,prātar a
+prātas,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],prātar [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+prātas,[END],prātaḥ
+antas,[k|kh|p|ph|ṣ|s],antaḥ [k|kh|p|ph|ṣ|s]
+antas,ś,antaḥ ś
+antas,[c|ch],antaś [c|ch]
+antas,[ṭ|ṭh],antaṣ [ṭ|ṭh]
+antas,[t|th],antas [t|th]
+antas,r,anta r
+antas,[g|gh|d|dh|b|bh|y|v],antar [g|gh|d|dh|b|bh|y|v]
+antas,[j|jh],antar [j|jh]
+antas,[ḍ|ḍh],antar [ḍ|ḍh]
+antas,l,antar l
+antas,h,antar h
+antas,[n|m],antar [n|m]
+antas,a,antar a
+antas,[ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ],antar [ā|i|ī|u|ū|e|ai|o|au|ṛ|ṝ|ḷ|ḹ]
+antas,[END],antaḥ
