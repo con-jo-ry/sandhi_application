@@ -260,11 +260,22 @@ class SandhiApplier:
         return None
     
     def _check_vowel_consonant_pattern(self, word: str) -> Optional[Tuple[str, None]]:
-        """Check for vowel+consonant patterns like 'is', 'us', 'ās'."""
+        """Check for vowel+consonant patterns like 'is', 'us', 'ās', 'ais', 'aus'."""
+        if len(word) >= 3:
+            # Check for two-character vowel + special consonant (ais, aus, etc.)
+            last_three = word[-3:]
+            if last_three[-1] in self.SPECIAL_CONSONANTS:
+                # Check if first two chars are a two-character vowel
+                potential_vowel = last_three[:2]
+                if potential_vowel in self.TWO_CHAR_VOWELS:
+                    return (last_three, None)  # Return all 3 characters
+        
+        # Fall back to single-character vowel + special consonant
         if len(word) >= 2:
             last_two = word[-2:]
             if last_two[-1] in self.SPECIAL_CONSONANTS:
                 return (last_two, None)
+        
         return None
     
     def get_beginning(self, word: str) -> Optional[str]:
