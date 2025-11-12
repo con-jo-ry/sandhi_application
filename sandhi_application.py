@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 """
-Sanskrit Sandhi Applier
+Sanskrit Sandhi Applier v4
 
 This script applies sandhi rules (both vowel and consonant) to Sanskrit text
 where sandhi points are marked with '+' signs. Rules are read from an external
 sandhi_logic.txt file.
 
-Major improvements in v3:
-- Dictionary-based rule lookup for O(1) performance
-- Compiled regex patterns for efficiency
-- Simplified text processing logic
-- Better error handling
-- Optional quick testing mode
+Major improvements in v4:
+- Dynamic pattern matching with bracket notation
+- Positional correspondence preserved across multiple brackets
+- No pre-expansion of rules (more memory efficient)
+- Proper handling of complex multi-bracket patterns
 """
 
 import re
@@ -31,13 +30,101 @@ class SandhiChange:
         return f"{self.original} -> {self.result}"
 
 
+@dataclass
+class SandhiRule:
+    """Represents a sandhi rule with pattern matching."""
+    first_pattern: str
+    second_pattern: str
+    result_pattern: str
+    is_exception: bool = False
+    
+    def __repr__(self):
+        return f"{self.first_pattern},{self.second_pattern},{self.result_pattern}"
+
+class PatternMatcher:
+    """Handles pattern matching with bracket notation."""
+    
+    @staticmethod
+    def parse_bracket_pattern(pattern: str) -> Tuple[str, List[str], str]:
+        """
+        Parse a pattern with brackets into (prefix, options, suffix).
+        Returns ('', [pattern], '') if no brackets found.
+        Special case: [END] returns as-is.
+        """
+        if pattern == '[END]':
+            return ('', ['[END]'], '')
+        
+        match = re.search(r'\[([^\]]+)\]', pattern)
+        if not match:
+            return ('', [pattern], '')
+        
+        prefix = pattern[:match.start()]
+        options = [opt.strip() for opt in match.group(1).split('|')]
+        suffix = pattern[match.end():]
+        
+        return (prefix, options, suffix)
+    
+    @staticmethod
+    def match_pattern(text: str, pattern: str) -> Optional[Tuple[bool, int]]:
+        """
+        Check if text matches pattern. 
+        Returns (True, option_index) if match found, None otherwise.
+        option_index is which bracket option matched (0 if no brackets).
+        """
+        if pattern == '[END]':
+            return (True, 0) if text == '[END]' else None
+        
+        prefix, options, suffix = PatternMatcher.parse_bracket_pattern(pattern)
+        
+        # Sort options by length (longest first) to prevent shorter options from 
+        # matching before longer ones (e.g., 'b' matching before 'bh')
+        # Keep track of original indices
+        options_with_indices = [(opt, i) for i, opt in enumerate(options)]
+        options_with_indices.sort(key=lambda x: len(x[0]), reverse=True)
+        
+        # Check each option (now sorted by length)
+        for option, original_index in options_with_indices:
+            full_pattern = prefix + option + suffix
+            if text == full_pattern:
+                return (True, original_index)
+        
+        return None
+    
+    @staticmethod
+    def substitute_pattern(pattern: str, indices: List[int]) -> str:
+        """
+        Substitute bracket patterns with specific indices.
+        indices[0] is used for first bracket, indices[1] for second bracket, etc.
+        """
+        if pattern == '[END]':
+            return ''
+        
+        result = pattern
+        index_pos = 0
+        
+        # Find and replace each bracket pattern
+        while '[' in result and ']' in result and index_pos < len(indices):
+            match = re.search(r'\[([^\]]+)\]', result)
+            if not match:
+                break
+            
+            options = [opt.strip() for opt in match.group(1).split('|')]
+            selected_index = indices[index_pos] % len(options)
+            selected_option = options[selected_index]
+            
+            # Replace the bracket pattern with selected option
+            result = result[:match.start()] + selected_option + result[match.end():]
+            index_pos += 1
+        
+        return result.strip()
+
 class SandhiApplier:
     """Applies sandhi rules to Sanskrit text based on external rules file."""
     
     # Constants
     MAX_PASSES = 50
     TWO_CHAR_VOWELS = ['ai', 'au']
-    TWO_CHAR_CONSONANTS = ['kh', 'gh', 'ch', 'jh', 'ṭh', 'ḍh', 'th', 'dh']
+    TWO_CHAR_CONSONANTS = ['kh', 'gh', 'ch', 'jh', 'ṭh', 'ḍh', 'th', 'dh', 'bh']
     SINGLE_CHAR_VOWELS = ['a', 'ā', 'i', 'ī', 'u', 'ū', 'e', 'o', 'ṛ', 'ṝ', 'ḷ', 'ḹ']
     SPECIAL_CONSONANTS = {'ṅ', 'n', 's'}
     
@@ -47,26 +134,27 @@ class SandhiApplier:
         self.all_vowels = self.TWO_CHAR_VOWELS + self.SINGLE_CHAR_VOWELS
         
         # Compile regex patterns once
-        self.bracket_pattern = re.compile(r'\[([^\]]+)\]')
         self.chain_pattern = re.compile(r'[^\s]+\+[^\s]+')
         
-        # Load rules from file - now using dict for O(1) lookup
-        self.rules_dict = {}  # (first, second) -> result
+        # Store rules as pattern objects (no pre-expansion)
+        self.rules: List[SandhiRule] = []
         self.exceptional_words = set()  # Words that use full-word matching
         self.exceptional_words_sorted = []  # Sorted by length for matching
-        self.changes_log: List[SandhiChange] = []
-        self.warnings: List[str] = []
-        self.load_rules(rules_file)
         
-        # Log of changes
+        # Pattern matcher
+        self.matcher = PatternMatcher()
+        
+        # Initialize collections
         self.changes_log: List[SandhiChange] = []
         self.warnings: List[str] = []
+        
+        # Load rules
+        self.load_rules(rules_file)
     
     def load_rules(self, filename: str):
-        """Load sandhi rules from external file into dictionary."""
+        """Load sandhi rules from external file."""
         try:
             in_exceptions_section = False
-            rules_count = 0
             
             with open(filename, 'r', encoding='utf-8') as f:
                 for line_num, line in enumerate(f, 1):
@@ -93,20 +181,19 @@ class SandhiApplier:
                     if in_exceptions_section and not first_pattern.startswith('['):
                         self.exceptional_words.add(first_pattern)
                     
-                    # Parse patterns and add to dictionary
-                    first_options = self._parse_pattern(first_pattern)
-                    second_options = self._parse_pattern(second_pattern)
-                    result_options = self._parse_pattern(result_pattern)
-                    
-                    # Store all rule combinations in dictionary
-                    rules_count += self._add_rule_combinations(
-                        first_options, second_options, result_options
+                    # Store rule with patterns intact (no expansion)
+                    rule = SandhiRule(
+                        first_pattern=first_pattern,
+                        second_pattern=second_pattern,
+                        result_pattern=result_pattern,
+                        is_exception=in_exceptions_section
                     )
+                    self.rules.append(rule)
             
             # Sort exceptional words by length (longest first) for matching
             self.exceptional_words_sorted = sorted(self.exceptional_words, key=len, reverse=True)
             
-            print(f"Loaded {rules_count} sandhi rules from {filename}")
+            print(f"Loaded {len(self.rules)} sandhi rules from {filename}")
             if self.exceptional_words:
                 print(f"Found {len(self.exceptional_words)} exceptional words: {sorted(self.exceptional_words)}")
             if self.warnings:
@@ -122,48 +209,6 @@ class SandhiApplier:
         except UnicodeDecodeError:
             print(f"Error: Rules file '{filename}' is not valid UTF-8!")
             sys.exit(1)
-    
-    def _add_rule_combinations(self, first_options: List[str], 
-                               second_options: List[str], 
-                               result_options: List[str]) -> int:
-        """Add all combinations of rule options to dictionary. Returns count added."""
-        count = 0
-        
-        if len(result_options) > 1:
-            # Match result options with second options
-            for first in first_options:
-                for i, second in enumerate(second_options):
-                    result_idx = i % len(result_options)
-                    self.rules_dict[(first, second)] = result_options[result_idx]
-                    count += 1
-        else:
-            # Standard expansion - all combinations
-            for first in first_options:
-                for second in second_options:
-                    for result in result_options:
-                        self.rules_dict[(first, second)] = result
-                        count += 1
-        
-        return count
-    
-    def _parse_pattern(self, pattern: str) -> List[str]:
-        """
-        Parse a pattern like '[a|ā]' or 'k' or '[ā|ī]n' into a list of options.
-        Special case: [END] is treated as a literal, not a bracket pattern.
-        """
-        if pattern == '[END]':
-            return ['[END]']
-        
-        match = self.bracket_pattern.search(pattern)
-        if not match:
-            return [pattern]
-        
-        # Extract options and reconstruct with prefix/suffix
-        options = [opt.strip() for opt in match.group(1).split('|')]
-        prefix = pattern[:match.start()]
-        suffix = pattern[match.end():]
-        
-        return [prefix + opt + suffix for opt in options]
     
     def get_ending(self, word: str) -> Tuple[Optional[str], Optional[str]]:
         """
@@ -260,29 +305,43 @@ class SandhiApplier:
         return self._get_preceding_vowel(word[:-1]) if len(word) > 1 else None
     
     def find_matching_rule(self, first: str, second: str, 
-                          preceding_vowel: Optional[str] = None) -> Optional[str]:
+                      preceding_vowel: Optional[str] = None) -> Optional[Tuple[SandhiRule, List[int]]]:
         """
-        Find a matching sandhi rule using dictionary lookup (O(1)).
-        For special cases with preceding vowel, check combined pattern first.
+        Find a matching sandhi rule using pattern matching.
+        Returns (rule, indices) where indices tracks which bracket options matched.
+        Only includes indices for patterns that actually have brackets.
         """
         # Try combined pattern first if we have a preceding vowel
         if preceding_vowel:
             combined = preceding_vowel + first
-            result = self.rules_dict.get((combined, second))
-            if result is not None:
-                return result
+            for rule in self.rules:
+                match_first = self.matcher.match_pattern(combined, rule.first_pattern)
+                match_second = self.matcher.match_pattern(second, rule.second_pattern)
+                
+                if match_first and match_second:
+                    # Collect indices only from patterns that have brackets
+                    indices = []
+                    if '[' in rule.first_pattern and ']' in rule.first_pattern and rule.first_pattern != '[END]':
+                        indices.append(match_first[1])
+                    if '[' in rule.second_pattern and ']' in rule.second_pattern and rule.second_pattern != '[END]':
+                        indices.append(match_second[1])
+                    return (rule, indices)
         
         # Standard lookup
-        return self.rules_dict.get((first, second))
-    
-    def _expand_result_pattern(self, result: str, matched_char: str) -> str:
-        """
-        Expand [x|y|z] notation in result by substituting with the matched character.
-        """
-        if '[END]' in result:
-            return result.replace('[END]', '').strip()
+        for rule in self.rules:
+            match_first = self.matcher.match_pattern(first, rule.first_pattern)
+            match_second = self.matcher.match_pattern(second, rule.second_pattern)
+            
+            if match_first and match_second:
+                # Collect indices only from patterns that have brackets
+                indices = []
+                if '[' in rule.first_pattern and ']' in rule.first_pattern and rule.first_pattern != '[END]':
+                    indices.append(match_first[1])
+                if '[' in rule.second_pattern and ']' in rule.second_pattern and rule.second_pattern != '[END]':
+                    indices.append(match_second[1])
+                return (rule, indices)
         
-        return self.bracket_pattern.sub(matched_char, result)
+        return None
     
     def apply_sandhi_at_junction(self, before_word: str, after_word: str) -> Tuple[str, str, bool]:
         """
@@ -303,9 +362,9 @@ class SandhiApplier:
             return (before_word, after_word, False)
         
         # Find matching rule
-        result = self.find_matching_rule(ending, beginning, preceding_vowel)
+        rule_match = self.find_matching_rule(ending, beginning, preceding_vowel)
         
-        if result is None:
+        if rule_match is None:
             # No rule found - log and return failure
             self.changes_log.append(SandhiChange(
                 original=f"{original_before}+{original_after}",
@@ -314,8 +373,10 @@ class SandhiApplier:
             ))
             return (before_word, after_word, False)
         
-        # Expand result pattern
-        result = self._expand_result_pattern(result, beginning)
+        rule, indices = rule_match
+        
+        # Substitute the matched indices into the result pattern
+        result = self.matcher.substitute_pattern(rule.result_pattern, indices)
         
         # Apply the transformation
         if preceding_vowel and len(ending) == 1 and ending in self.SPECIAL_CONSONANTS:
@@ -334,7 +395,7 @@ class SandhiApplier:
         self.changes_log.append(SandhiChange(
             original=f"{original_before}+{original_after}",
             result=modified_before + modified_after,
-            rule_applied=f"{ending}+{beginning}→{result}"
+            rule_applied=str(rule)
         ))
         
         return (modified_before.strip(), modified_after.strip(), True)
@@ -342,6 +403,10 @@ class SandhiApplier:
     def process_text(self, text: str) -> str:
         """Process entire text and apply sandhi rules."""
         self.changes_log = []
+        
+        # Quick check: if no '+' in text, return immediately
+        if '+' not in text:
+            return text
         
         changes_made = True
         pass_count = 0
@@ -414,10 +479,18 @@ def run_quick_tests():
             "❌ Basic vowel sandhi failed"
         print("✓ Test 2 passed: Basic vowel sandhi")
         
-        # Test 3: Rules loaded correctly
-        assert len(applier.rules_dict) > 0, \
+        # Test 3: Multi-bracket correspondence
+        applier3 = SandhiApplier()
+        result = applier3.process_text("tasmin+eva")
+        # Should get "tasminn eva" not "tasmann eva"
+        assert "tasminn eva" in result or "tasmin eva" in result, \
+            f"❌ Multi-bracket correspondence failed: got {result}"
+        print(f"✓ Test 3 passed: Multi-bracket correspondence (result: {result.strip()})")
+        
+        # Test 4: Rules loaded correctly
+        assert len(applier.rules) > 0, \
             "❌ No rules loaded"
-        print(f"✓ Test 3 passed: {len(applier.rules_dict)} rules loaded")
+        print(f"✓ Test 4 passed: {len(applier.rules)} rules loaded")
         
         print("\n✅ All quick tests passed!\n")
         return True
@@ -427,6 +500,8 @@ def run_quick_tests():
         return False
     except Exception as e:
         print(f"\n❌ Test failed with error: {e}\n")
+        import traceback
+        traceback.print_exc()
         return False
 
 
@@ -440,10 +515,10 @@ def main():
     
     # Check command line arguments
     if len(sys.argv) < 2:
-        print("Usage: python sandhi_applier_v3.py <input_file> [rules_file]")
-        print("       python sandhi_applier_v3.py --test")
-        print("\nExample: python sandhi_applier_v3.py mytext.txt")
-        print("         python sandhi_applier_v3.py mytext.txt custom_rules.txt")
+        print("Usage: python sandhi_applier_v4.py <input_file> [rules_file]")
+        print("       python sandhi_applier_v4.py --test")
+        print("\nExample: python sandhi_applier_v4.py mytext.txt")
+        print("         python sandhi_applier_v4.py mytext.txt custom_rules.txt")
         sys.exit(1)
     
     input_file = sys.argv[1]
